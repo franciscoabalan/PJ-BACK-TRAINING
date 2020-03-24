@@ -10,7 +10,7 @@ before_script:
   - bundle exec rails db:create
   - bundle exec rails db:migrate
 script:
-  - bundle exec rspec spec -fd
+  # - bundle exec rspec spec -fd
   - bundle exec rubocop app spec --format simple
 #notifications:
 #  email:
