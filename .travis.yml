@@ -1,0 +1,28 @@
+language: ruby
+rvm:
+  - 2.5.1
+services:
+  - postgresql
+
+before_install:
+  - "echo '--colour' > ~/.rspec"
+  - "echo 'gem: --no-document' > ~/.gemrc"
+  # Solves rainbow issue: https://github.com/sickill/rainbow/issues/48
+  - gem update --system
+
+before_script:
+  - cp config/database.travis.yml config/database.yml
+  - bundle exec rails db:create
+  - bundle exec rails db:migrate
+
+script:
+  - bundle exec rspec spec -fd
+  - bundle exec rubocop app spec --format simple
+
+#notifications:
+#  email:
+#    recipients:
+#      - rails-bootstrap-dev@wolox.com.ar
+
+cache:
+  bundler: true
