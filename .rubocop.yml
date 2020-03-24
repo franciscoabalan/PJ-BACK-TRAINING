@@ -1,6 +1,6 @@
 Style/Documentation:
   Enabled: false
-Metrics/LineLength:
+Layout/LineLength:
   Max: 99
 Style/HashEachMethods:
   Enabled: true
@@ -8,3 +8,5 @@ Style/HashTransformKeys:
   Enabled: true
 Style/HashTransformValues:
   Enabled: true
+Style/FrozenStringLiteralComment:
+  Enabled: false
