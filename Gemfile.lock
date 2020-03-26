@@ -148,7 +148,7 @@ DEPENDENCIES
   pg (~> 0.18)
   puma (~> 3.7)
   rails (~> 5.1.0)
-  rubocop
+  rubocop (~> 0.80.1)
   spring
   spring-watcher-listen (~> 2.0.0)
   tzinfo-data
