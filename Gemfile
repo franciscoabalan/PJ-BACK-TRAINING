@@ -29,6 +29,8 @@ group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
   gem 'rubocop', '~> 0.80.1'
+  gem 'faker', '~> 2.11.0'
+  gem 'factory_bot_rails', '~> 5.1.1'
 end
 
 group :development do
@@ -37,6 +39,12 @@ group :development do
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
   gem 'awesome_print', '~> 1.8.0'
+end
+
+group :test do
+  gem 'rspec-rails', '~> 4.0.0'
+  gem 'database_cleaner', '~> 1.8.3'
+  gem 'shoulda', '~> 3.5.0'
 end
 
 # group :test do
