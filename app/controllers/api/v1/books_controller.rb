@@ -3,12 +3,12 @@ module Api
     class BooksController < ApplicationController
       include Wor::Paginate
 
-      # GET /api/v2/books
+      # GET /api/v1/books
       def index
         render_paginated Book.all
       end
 
-      # GET /api/v2/books/1
+      # GET /api/v1/books/1
       def show
         render json: book
       end
