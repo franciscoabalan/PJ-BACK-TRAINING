@@ -10,12 +10,10 @@ module Api
 
       # POST /api/v1/rents
       def create
-        begin
-          rent = Rent.create!(rent_params)
-          render json: rent
-        rescue => ex
-          render json: { error: ex.message }, status: :unprocessable_entity
-        end
+        rent = Rent.create!(rent_params)
+        render json: rent
+      rescue StandardError => e
+        render json: { error: e.message }, status: :unprocessable_entity
       end
 
       private
