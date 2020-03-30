@@ -3,25 +3,20 @@ module Api
     class BooksController < ApplicationController
       include Wor::Paginate
 
-      before_action :authenticate_user!
-      before_action :set_api_v2_book, only: [:show]
-
       # GET /api/v2/books
       def index
-        @api_v2_books = Book.all
-
-        render_paginated @api_v2_books
+        render_paginated Book.all
       end
 
       # GET /api/v2/books/1
       def show
-        render json: @api_v2_book
+        render json: book
       end
 
       private
 
-      def set_api_v2_book
-        @api_v2_book = Book.find(params[:id])
+      def book
+        @book ||= Book.find(params[:id])
       end
     end
   end
