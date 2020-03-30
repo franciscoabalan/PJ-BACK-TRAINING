@@ -4,7 +4,7 @@ module Api
       include Wor::Paginate
 
       before_action :authenticate_user!
-      before_action :set_api_v2_book, only: [:show] # , :update, :destroy]
+      before_action :set_api_v2_book, only: [:show]
 
       # GET /api/v2/books
       def index
@@ -15,7 +15,7 @@ module Api
 
       # GET /api/v2/books/1
       def show
-        render_paginated @api_v2_book
+        render json: @api_v2_book
       end
 
       private
