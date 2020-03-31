@@ -1,6 +1,6 @@
 module Api
   module V1
-    class BooksController < ApplicationController
+    class BooksController < ApiController
       include Wor::Paginate
 
       # GET /api/v2/books
@@ -11,6 +11,8 @@ module Api
       # GET /api/v2/books/1
       def show
         render json: book
+      rescue ActiveRecord::RecordNotFound => ex
+        render json: { error: ex.message }, status: :not_found
       end
 
       private
