@@ -11,8 +11,8 @@ module Api
       # GET /api/v2/books/1
       def show
         render json: book
-      rescue ActiveRecord::RecordNotFound => ex
-        render json: { error: ex.message }, status: :not_found
+      rescue ActiveRecord::RecordNotFound => e
+        render json: { error: e.message }, status: :not_found
       end
 
       private
