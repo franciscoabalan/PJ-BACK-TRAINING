@@ -15,6 +15,20 @@ ActiveRecord::Schema.define(version: 20200327122015) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
+  create_table "book_suggestions", force: :cascade do |t|
+    t.string "synopsis"
+    t.float "price"
+    t.string "author", null: false
+    t.string "title", null: false
+    t.string "link", null: false
+    t.string "publisher", null: false
+    t.string "year", null: false
+    t.bigint "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_book_suggestions_on_user_id"
+  end
+
   create_table "books", force: :cascade do |t|
     t.string "title", null: false
     t.string "author", null: false
@@ -65,6 +79,7 @@ ActiveRecord::Schema.define(version: 20200327122015) do
     t.index ["uid", "provider"], name: "index_users_on_uid_and_provider", unique: true
   end
 
+  add_foreign_key "book_suggestions", "users"
   add_foreign_key "rents", "books"
   add_foreign_key "rents", "users"
 end
