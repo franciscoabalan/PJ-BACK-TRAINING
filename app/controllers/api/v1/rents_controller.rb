@@ -14,8 +14,6 @@ module Api
       def create
         rent = Rent.create!(rent_params)
         render json: rent, status: :created
-      rescue ActionController::ParameterMissing => e
-        render json: { error: e.message }, status: :bad_request
       rescue ActiveRecord::RecordInvalid => e
         render json: { error: e.message }, status: :unprocessable_entity
       end
