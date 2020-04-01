@@ -5,11 +5,14 @@ module Api
 
       # GET /api/v1/books
       def index
-        render_paginated Book.all
+        books = Book.all
+        authorize books
+        render_paginated books
       end
 
       # GET /api/v1/books/1
       def show
+        authorize book
         render json: book
       rescue ActiveRecord::RecordNotFound => e
         render json: { error: e.message }, status: :not_found

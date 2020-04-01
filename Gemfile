@@ -53,3 +53,8 @@ gem 'devise_token_auth', '~> 1.0'
 gem 'active_model_serializers', '~> 0.10.0'
 gem 'wor-paginate', '~> 0.2.0'
 gem 'versionist', '~> 2.0.1'
+<<<<<<< HEAD
+=======
+gem 'rails-i18n', '~> 5.1'
+gem 'pundit'
+>>>>>>> e4f74e3... Pundit added
