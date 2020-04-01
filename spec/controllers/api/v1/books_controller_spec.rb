@@ -39,13 +39,13 @@ describe Api::V1::BooksController, type: :controller do
       end
     end
 
-    context 'When request a book and this is\'n exist' do
+    context 'When not found a requested book' do
       let(:book_id) { -1 }
       subject(:http_request) { get :show, params: { id: book_id } }
 
-      it 'responses with the book json have error message' do
+      it 'responses with the correct error' do
         expect(http_request.body.to_json) =~ JSON.parse(
-          { 'error': 'Couldn\'t find Book with \'id\'=' + book_id.to_s }.to_json
+          { 'error': "Couldn't find Book with 'id'= #{book_id}" }.to_json
         )
       end
 
