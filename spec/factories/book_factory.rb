@@ -5,6 +5,6 @@ FactoryBot.define do
     image { Faker::Avatar.image }
     publisher { Faker::Book.publisher }
     genre { Faker::Book.genre }
-    year { [1990..2020].sample }
+    year { rand(1990..2020).to_s }
   end
 end
