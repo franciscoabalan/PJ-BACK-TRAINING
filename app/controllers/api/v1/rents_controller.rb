@@ -11,8 +11,9 @@ module Api
 
       # POST /api/v1/rents
       def create
-        rent = Rent.create!(rent_params)
+        rent = Rent.new(rent_params)
         authorize rent
+        rent.save!
         render json: rent, status: :created
       end
 

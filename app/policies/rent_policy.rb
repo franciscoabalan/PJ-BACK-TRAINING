@@ -4,6 +4,6 @@ class RentPolicy < ApplicationPolicy
   end
 
   def create?
-    @user.present?
+    @record.present? && @user.present? && @record.user == @user
   end
 end
