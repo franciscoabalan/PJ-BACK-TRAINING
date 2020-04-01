@@ -7,8 +7,6 @@ module Api
       def index
         authorize rents
         render_paginated rents
-      rescue ActiveRecord::RecordNotFound => e
-        render json: { error: e.message }, status: :not_found
       end
 
       # POST /api/v1/rents
@@ -16,8 +14,6 @@ module Api
         rent = Rent.create!(rent_params)
         authorize rent
         render json: rent, status: :created
-      rescue ActiveRecord::RecordInvalid => e
-        render json: { error: e.message }, status: :unprocessable_entity
       end
 
       private

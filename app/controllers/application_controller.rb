@@ -3,11 +3,7 @@ class ApplicationController < ActionController::API
   include Pundit
 
   before_action :configure_permitted_parameters, if: :devise_controller?
-<<<<<<< HEAD
-=======
-  around_action :switch_locale
   rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
->>>>>>> e4f74e3... Pundit added
 
   protected
 

@@ -14,8 +14,6 @@ module Api
       def show
         authorize book
         render json: book
-      rescue ActiveRecord::RecordNotFound => e
-        render json: { error: e.message }, status: :not_found
       end
 
       private
