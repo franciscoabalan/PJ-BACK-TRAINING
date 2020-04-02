@@ -23,10 +23,11 @@ describe Api::V1::BooksController, type: :controller do
   end
 
   describe 'GET #show' do
-    subject(:http_request) { get :show, params: { id: book.id } }
+    subject(:http_request) { get :show, params: { id: book_id } }
 
     context 'When fetching a book' do
       let(:book) { create(:book) }
+      let(:book_id) { book.id }
 
       it 'responses with the book json' do
         expect(http_request.body).to eq BookSerializer.new(
@@ -41,7 +42,6 @@ describe Api::V1::BooksController, type: :controller do
 
     context 'When not found a requested book' do
       let(:book_id) { -1 }
-      subject(:http_request) { get :show, params: { id: book_id } }
 
       it 'responses with the correct error' do
         expect(http_request.body.to_json) =~ JSON.parse(
