@@ -1,7 +1,7 @@
 module Api
   module V1
     class BookSuggestionsController < ApiController
-      before_action :authenticate_user!, except: [:create]
+      skip_before_action :authenticate_user!
 
       # POST /api/v1/book_suggestion
       def create
