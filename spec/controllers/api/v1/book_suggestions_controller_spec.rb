@@ -2,42 +2,39 @@ require 'rails_helper'
 
 describe Api::V1::BookSuggestionsController, type: :controller do
   describe 'POST #create' do
-    let(:attr_valid) { attributes_for(:book_suggestion) }
-    let(:attr_invalid) { attributes_for(:book_suggestion, year: nil) }
-
-    subject(:http_request_valid) do
-      post :create, params: { book_suggestion: attr_valid }
-    end
-
-    subject(:http_request_invalid) do
-      post :create, params: { book_suggestion: attr_invalid }
+    subject(:http_request) do
+      post :create, params: { book_suggestion: attr_book_suggestion }
     end
 
     context 'When creating an valid BookSuggestion' do
-      it 'creates a new book_suggestion' do
-        http_request_valid_parsed = JSON.parse(http_request_valid.parsed_body)
+      let(:attr_book_suggestion) { attributes_for(:book_suggestion) }
 
-        expect(http_request_valid_parsed['author']).to eq(attr_valid[:author])
-        expect(http_request_valid_parsed['title']).to eq(attr_valid[:title])
-        expect(http_request_valid_parsed['link']).to eq(attr_valid[:link])
-        expect(http_request_valid_parsed['publisher']).to eq(attr_valid[:publisher])
-        expect(http_request_valid_parsed['year']).to eq(attr_valid[:year])
+      it 'creates a new book_suggestion' do
+        http_request_valid_parsed = JSON.parse(http_request.parsed_body)
+
+        expect(http_request_valid_parsed['author']).to eq(attr_book_suggestion[:author])
+        expect(http_request_valid_parsed['title']).to eq(attr_book_suggestion[:title])
+        expect(http_request_valid_parsed['link']).to eq(attr_book_suggestion[:link])
+        expect(http_request_valid_parsed['publisher']).to eq(attr_book_suggestion[:publisher])
+        expect(http_request_valid_parsed['year']).to eq(attr_book_suggestion[:year])
       end
 
       it 'responds with 201 status' do
-        expect(http_request_valid).to have_http_status(:created)
+        expect(http_request).to have_http_status(:created)
       end
     end
 
     context 'When creating an invalid BookSuggestion' do
+      let(:attr_book_suggestion) { attributes_for(:book_suggestion, year: nil) }
+
       it 'cant create a new book_suggestion' do
-        expect(http_request_invalid.body.to_json) =~ JSON.parse(
+        expect(http_request.body.to_json) =~ JSON.parse(
           { 'error': "Validation failed: Year can't be blank" }.to_json
         )
       end
 
       it 'responds with 422 status' do
-        expect(http_request_invalid).to have_http_status(:unprocessable_entity)
+        expect(http_request).to have_http_status(:unprocessable_entity)
       end
     end
   end
