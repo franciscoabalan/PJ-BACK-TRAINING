@@ -23,7 +23,7 @@ describe Api::V1::BooksController, type: :controller do
   end
 
   describe 'GET #show' do
-    subject(:http_request) { get :show, params: { id: book.id } }
+    subject(:http_request) { get :show, params: { id: book_id } }
 
     context 'When fetching a book' do
       let(:book) { create(:book) }
