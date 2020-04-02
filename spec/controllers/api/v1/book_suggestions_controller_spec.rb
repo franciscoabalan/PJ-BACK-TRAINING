@@ -17,8 +17,6 @@ describe Api::V1::BookSuggestionsController, type: :controller do
       it 'creates a new book_suggestion' do
         http_request_valid_parsed = JSON.parse(http_request_valid.parsed_body)
 
-        expect(http_request_valid_parsed['synopsis']).to eq(attr_valid[:synopsis])
-        expect(http_request_valid_parsed['price']).to eq(attr_valid[:price])
         expect(http_request_valid_parsed['author']).to eq(attr_valid[:author])
         expect(http_request_valid_parsed['title']).to eq(attr_valid[:title])
         expect(http_request_valid_parsed['link']).to eq(attr_valid[:link])
