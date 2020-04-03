@@ -17,7 +17,7 @@ module OpenLibrary
     end
 
     def find(isbn)
-      data_book = find_by ISBN: isbn
+      data_book = find_by(ISBN: isbn)
 
       return unless data_book.key?("ISBN:#{isbn}")
 
