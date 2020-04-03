@@ -3,8 +3,17 @@ module OpenLibrary
     def find_by(params)
       params_string = params.map { |e| e.join(':') }.join(',')
 
-      url = "/books?bibkeys=#{params_string}&format=#{@format}&jscmd=#{@jscmd}"
-      JSON.parse(self.class.get(url).body)
+      url = '/books'
+
+      result = self.class.get(url, {
+                                query: {
+                                  format: @format,
+                                  bibkeys: params_string,
+                                  jscmd: @jscmd
+                                }
+                              }).body
+
+      JSON.parse(result)
     end
 
     def find(isbn)
