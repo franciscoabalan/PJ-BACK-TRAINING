@@ -1,6 +1,6 @@
 module OpenLibrary
   class BookService < BaseService
-    PATH = '/books'
+    PATH = '/books'.freeze
 
     def find_by(params)
       bibkeys = params.map { |e| e.join(':') }.join(',')
