@@ -43,7 +43,7 @@ describe Api::V1::BookSuggestionsController, type: :controller do
 
       it 'cant create a new book_suggestion' do
         expect(http_request.body.to_json) =~ JSON.parse(
-            { 'error': "param is missing or the value is empty: book_suggestion" }.to_json
+          { 'error': 'param is missing or the value is empty: book_suggestion' }.to_json
         )
       end
 
