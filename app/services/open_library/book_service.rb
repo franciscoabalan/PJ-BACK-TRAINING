@@ -1,14 +1,14 @@
 module OpenLibrary
   class BookService < BaseService
+    PATH = '/books'
+
     def find_by(params)
-      params_string = params.map { |e| e.join(':') }.join(',')
+      bibkeys = params.map { |e| e.join(':') }.join(',')
 
-      url = '/books'
-
-      result = self.class.get(url, {
+      result = self.class.get(PATH, {
                                 query: {
                                   format: @format,
-                                  bibkeys: params_string,
+                                  bibkeys: bibkeys,
                                   jscmd: @jscmd
                                 }
                               }).body
