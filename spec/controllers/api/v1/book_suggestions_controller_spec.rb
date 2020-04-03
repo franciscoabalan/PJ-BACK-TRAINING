@@ -37,5 +37,19 @@ describe Api::V1::BookSuggestionsController, type: :controller do
         expect(http_request).to have_http_status(:unprocessable_entity)
       end
     end
+
+    context 'When creating an invalid BookSuggestion without parameters' do
+      let(:attr_book_suggestion) { nil }
+
+      it 'cant create a new book_suggestion' do
+        expect(http_request.body.to_json) =~ JSON.parse(
+          { 'error': 'param is missing or the value is empty: book_suggestion' }.to_json
+        )
+      end
+
+      it 'responds with 400 status' do
+        expect(http_request).to have_http_status(:bad_request)
+      end
+    end
   end
 end
