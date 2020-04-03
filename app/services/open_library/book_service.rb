@@ -1,14 +1,14 @@
 module OpenLibrary
   class BookService < BaseService
+    PATH = '/books'.freeze
+
     def find_by(params)
-      params_string = params.map { |e| e.join(':') }.join(',')
+      bibkeys = params.map { |e| e.join(':') }.join(',')
 
-      url = '/books'
-
-      result = self.class.get(url, {
+      result = self.class.get(PATH, {
                                 query: {
                                   format: @format,
-                                  bibkeys: params_string,
+                                  bibkeys: bibkeys,
                                   jscmd: @jscmd
                                 }
                               }).body
@@ -17,7 +17,7 @@ module OpenLibrary
     end
 
     def find(isbn)
-      data_book = find_by ISBN: isbn
+      data_book = find_by(ISBN: isbn)
 
       return unless data_book.key?("ISBN:#{isbn}")
 
