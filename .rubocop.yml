@@ -10,3 +10,6 @@ Style/HashTransformValues:
   Enabled: true
 Style/FrozenStringLiteralComment:
   Enabled: false
+Metrics/BlockLength:
+  Exclude:
+    - spec/**/*

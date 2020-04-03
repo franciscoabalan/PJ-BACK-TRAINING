@@ -10,6 +10,7 @@ require 'database_cleaner'
 require 'factory_bot_rails'
 require 'shoulda-matchers'
 require 'faker'
+Dir[Rails.root.join('spec/support/**/*.rb')].sort.each { |f| require f }
 # Requires supporting ruby files with custom matchers and macros, etc, in
 # spec/support/ and its subdirectories. Files matching `spec/**/*_spec.rb` are
 # run as spec files by default. This means that files in spec/support that end
@@ -35,6 +36,7 @@ rescue ActiveRecord::PendingMigrationError => e
 end
 RSpec.configure do |config|
   config.include FactoryBot::Syntax::Methods
+  config.include Devise::Test::ControllerHelpers, type: :controller
 
   # start by truncating all the tables but then use the faster
   # transaction strategy the rest of the time.
