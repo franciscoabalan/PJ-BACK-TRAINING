@@ -5,12 +5,15 @@ module Api
 
       # GET /api/v1/:user_id/rents
       def index
+        authorize rents
         render_paginated rents
       end
 
       # POST /api/v1/rents
       def create
-        rent = Rent.create!(rent_params)
+        rent = Rent.new(rent_params)
+        authorize rent
+        rent.save!
         render json: rent, status: :created
       end
 
