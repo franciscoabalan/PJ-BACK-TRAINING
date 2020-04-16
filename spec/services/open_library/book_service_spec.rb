@@ -2,9 +2,10 @@ require 'rails_helper'
 
 describe OpenLibrary::BookService do
   describe '#find' do
+    subject(:book) { described_class.new.find(isbn) }
+
     context 'When request a valid ISBN' do
       let(:isbn) { '0385472579' }
-      let(:book) { described_class.new.find(isbn) }
       let(:body) do
         {
           query: {
