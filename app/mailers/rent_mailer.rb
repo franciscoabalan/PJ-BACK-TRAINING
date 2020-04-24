@@ -8,6 +8,13 @@ class RentMailer < ApplicationMailer
     email = user.email
     @rents = user.rents.where('end_rent < ?', Time.now.to_date)
 
-    mail(to: email, subject: 'Tienes libros vencidos', from: 'noreplay@book.com')
+    mail(to: email, subject: 'Tienes libros vencidos', from: 'noreply@book.com')
+  end
+
+  def new_rent(rent)
+    email = rent.user.email
+    @rent = rent
+
+    mail(to: email, subject: 'Tus nuevos arriendos', from: 'noreply@book.com')
   end
 end
