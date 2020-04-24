@@ -7,7 +7,8 @@ class Rent < ApplicationRecord
   validates :start_rent, :end_rent, presence: true
 
   private
+
   def notify_mail
-    NewRentWorker.perform_async(self.id)
+    NewRentWorker.perform_async(id)
   end
 end
