@@ -1,0 +1,7 @@
+:queues:
+  - default
+
+:schedule:
+  rent_expiration:
+    cron: '00 09 * * * GMT-3' # every monday at 3 AM
+    class: RentExpirationWorker
